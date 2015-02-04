@@ -3,8 +3,7 @@ import random
 class Draft():
 
 	def __init__(self, cards, max_players = 8, bots = True, pack_size=15):
-		self.players = {} #{id:Player obj}
-		
+		self.players = [] #{id:Player obj}
 		self.cards = cards
 		self.max_players = max_players
 		self.pack_size = pack_size
@@ -12,17 +11,28 @@ class Draft():
 		self.started = False
 		
 	def add_player(self, playerID):
-		if not started and self.max_players > len(self.players) and playerID not in self.players:
-			self.players[playerID] = Player(playerID)
+		if self.started:
+			return False
+	
+		if self.max_players > len(self.players) and self.get_player(playerID) is None:
+			self.players.append( Player(playerID) )
+			return True
+			
+		return False
+		
+	#Add logic for creating bot if player drops
+	def remove_player(self, playerID):
+		player = self.get_player(playerID)
+		if player is not None:
+			self.players.remove(player)
 			return True
 		return False
 		
-	def remove_player(self, playerID)
-		if playerID in self.players:
-			self.players.remove(playerID)
-			return True
-		return False
-		
+	def get_player(self, playerID):
+		for player in self.players:
+			if playerID == player.id:
+				return player
+		return None
 			
 	def generate_pack(self):
 		if self.pack_size < len(self.cards):
@@ -40,11 +50,11 @@ class Draft():
 		if self.started:
 			return False
 		
-		#CREATE TABLE ORDER, OR ELIMINATE AND REMOVE DICT FOR PLAYERS
-		#create bots
-		#shuffle order
 		for i in range(max_players - len(self.players)):
-			self.players.
+			#create bots
+			pass
+			
+		random.shuffle(self.players)
 		
 		for player in self.players:
 			self.players[player].append( generate_pack() )
@@ -72,6 +82,7 @@ class Draft():
 				next = self.table_order.index(playerID)
 				next.pack_queue.append(pack)
 				
+				#itertools to reverse list
 				while next.isbot():
 					pass
 					
@@ -80,7 +91,6 @@ class Draft():
 				pass
 		
 		data = "data"
-		#notify_func(data)
 		
 		return data
 		
@@ -97,7 +107,12 @@ class Player():
 	def is_bot():
 		return False
 		
-class Bot(Player)
+class Bot(Player):
 	def is_bot():
 		return True
+		
+def main():
+	print "Main"
+	
+main()
 		
