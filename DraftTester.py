@@ -30,12 +30,28 @@ def testAddRemove(d):
 	
 	return d
 	
+def testDraft():
+
+	d = Draft(['1','2','3','4','5'], max_players=4)
+
+	players = 4
+	for i in range(players - 1):
+		d.add_player( str(i) )
+		
+	#print d.players
+	#for player in d.players:
+	#	print player
+	
+	d.start()
+	
+	for player in d.players:
+		print player, ': ', player.pack_queue[0]
 	
 def main():
-	d = Draft('1,2,3,4,5')
-	
-	testAddRemove(d)
+	#d = Draft('1,2,3,4,5')
+	#testAddRemove(d)
 
+	testDraft()
 
 
 
