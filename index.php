@@ -14,7 +14,7 @@ $db = $connection->selectDB('cubedb');
 
 $collection = $db->users;
 
-$doc_cursor = $collection->find( array( 'username' : $username } ) );
+$doc_cursor = $collection->find( array('username' : $username) );
 
 foreach ($doc_cursor as $doc) {
     foreach ($doc as $key => $val){
