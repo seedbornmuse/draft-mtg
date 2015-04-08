@@ -18,8 +18,8 @@ $cursor = $collection->find( array('username' => $username, 'password' => $passw
 
 var_dump($cursor);
 
-if (cursor::valid()){
-	echo cursor->current();
+if ($cursor->valid()){
+	echo $cursor->current();
 }
 
 /*foreach ($doc_cursor as $doc) {
