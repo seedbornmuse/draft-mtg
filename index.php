@@ -14,9 +14,13 @@ $db = $connection->selectDB('cubedb');
 
 $collection = $db->users;
 
-$doc_cursor = $collection->find( array('username' => $username, 'password' => $password) );
+$cursor = $collection->find( array('username' => $username, 'password' => $password) );
 
-var_dump($doc_cursor);
+var_dump($cursor);
+
+if (cursor->valid()){
+	echo cursor->current();
+}
 
 /*foreach ($doc_cursor as $doc) {
     foreach ($doc as $key => $val){
