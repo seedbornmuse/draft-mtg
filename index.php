@@ -18,7 +18,7 @@ $cursor = $collection->find( array('username' => $username, 'password' => $passw
 
 var_dump($cursor);
 
-if (cursor->valid()){
+if (cursor::valid()){
 	echo cursor->current();
 }
 
