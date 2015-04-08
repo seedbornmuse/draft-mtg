@@ -16,12 +16,14 @@ $collection = $db->users;
 
 $doc_cursor = $collection->find( array('username' => $username, 'password' => $password) );
 
-foreach ($doc_cursor as $doc) {
+var_dump($doc_cursor);
+
+/*foreach ($doc_cursor as $doc) {
     foreach ($doc as $key => $val){
         echo $key . ': ' . $val . '<br>';
-		//var_dump( $doc )
+		
 }
-}
+}*/
 /*
 while ( $cursor->hasNext() )
 {
