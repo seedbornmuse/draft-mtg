@@ -14,13 +14,11 @@ $db = $connection->selectDB('cubedb');
 
 $collection = $db->users;
 
-$cursor = $collection->find( array('username' => $username, 'password' => $password) );
+//$cursor = $collection->find( array('username' => $username, 'password' => $password) );
 
-var_dump($cursor);
-
-if ($cursor->valid()){
-	echo $cursor->current();
-}
+$doc = $collection->findOne( array('username' => $username, 'password' => $password) );
+echo count($doc);
+echo $doc["_id"];
 
 /*foreach ($doc_cursor as $doc) {
     foreach ($doc as $key => $val){
