@@ -4,7 +4,7 @@
 <body>
 
 <form action="" >
-no
+nono
 </form>
 
 <?php
