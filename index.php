@@ -7,12 +7,16 @@ function login($username, $password){
 
 	$collection = $db->users;
 
-	$doc = $collection->findOne( array('username' => $username, 'password' => $password) );
+	$doc = $collection->findOne( array('username' => $username) );
 	//doc null if no result found
 
 	if ($doc){
-		//echo $doc["_id"];
-		return true;
+		if ($doc['password'] == $password){ //check if password matches
+			return true;
+		} 
+		else if ($doc['session'] == $session){
+			return true;
+		}
 	}
 	
 	return false;
@@ -20,7 +24,7 @@ function login($username, $password){
 }
 
 $login = false;
-if (isSet($_POST["username", $_POST["password"])){
+if (isSet($_POST["username"], $_POST["password"])){
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 	
@@ -29,14 +33,23 @@ if (isSet($_POST["username", $_POST["password"])){
 } 
 	
 if (!$login){
-	header('Location: /login.php');
+	header('Location: login.php');
 }
 
-require_once("/resources/header.php");
+require_once("resources/templates/header.php");
 
-echo "<div> Logged in as " . $username . </div>;
+?>
 
-require_once("/resources/footer.php");
+<div>Logged in as <?=$username?></div>
+
+<form action="" method="POST">
+	<input type="submit" value="Host Draft">
+	<input type="submit" value="Join Draft">
+</form>
+
+<?
+
+require_once("resources/templates/footer.php");
 
 ?>
 

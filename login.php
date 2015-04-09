@@ -1,5 +1,5 @@
 <?php
-require_once("/resources/header.php");
+require_once("resources/templates/header.php");
 ?>
 
 <div id="login">
@@ -12,5 +12,5 @@ require_once("/resources/header.php");
 </div>
 
 <?php
-require_once("/resources/footer.php");
+require_once("resources/templates/footer.php");
 ?>
