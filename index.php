@@ -1,12 +1,11 @@
-<html>
-<head>
-</head>
-<body>
-
 <?php
 
+//if (isSet($_POST["username", $_POST["password"])){
 $username = $_POST["username"];
 $password = $_POST["password"];
+//}
+
+
 
 $connection = new Mongo();
 
@@ -16,9 +15,20 @@ $collection = $db->users;
 
 //$cursor = $collection->find( array('username' => $username, 'password' => $password) );
 
+function login($username, $password, $db){
+
+
+}
 $doc = $collection->findOne( array('username' => $username, 'password' => $password) );
-echo count($doc);
-echo $doc["_id"];
+//doc null if no result found
+
+if ($doc){
+	session_start();
+}
+
+if ($doc){
+	echo $doc["_id"];
+}
 
 /*foreach ($doc_cursor as $doc) {
     foreach ($doc as $key => $val){
