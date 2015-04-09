@@ -1,48 +1,42 @@
 <?php
 
-//if (isSet($_POST["username", $_POST["password"])){
-$username = $_POST["username"];
-$password = $_POST["password"];
-//}
+function login($username, $password){
+	$connection = new Mongo();
 
+	$db = $connection->selectDB('cubedb');
 
+	$collection = $db->users;
 
-$connection = new Mongo();
+	$doc = $collection->findOne( array('username' => $username, 'password' => $password) );
+	//doc null if no result found
 
-$db = $connection->selectDB('cubedb');
-
-$collection = $db->users;
-
-//$cursor = $collection->find( array('username' => $username, 'password' => $password) );
-
-function login($username, $password, $db){
-
-
-}
-$doc = $collection->findOne( array('username' => $username, 'password' => $password) );
-//doc null if no result found
-
-if ($doc){
-	session_start();
+	if ($doc){
+		//echo $doc["_id"];
+		return true;
+	}
+	
+	return false;
+	
 }
 
-if ($doc){
-	echo $doc["_id"];
+$login = false;
+if (isSet($_POST["username", $_POST["password"])){
+	$username = $_POST["username"];
+	$password = $_POST["password"];
+	
+	if( login($username, $password) )
+		$login = true;
+} 
+	
+if (!$login){
+	header('Location: /login.php');
 }
 
-/*foreach ($doc_cursor as $doc) {
-    foreach ($doc as $key => $val){
-        echo $key . ': ' . $val . '<br>';
-		
-}
-}*/
-/*
-while ( $cursor->hasNext() )
-{
-    var_dump( $cursor->getNext() );
-}
-*/
+require_once("/resources/header.php");
+
+echo "<div> Logged in as " . $username . </div>;
+
+require_once("/resources/footer.php");
 
 ?>
-</body>
-</html>
+

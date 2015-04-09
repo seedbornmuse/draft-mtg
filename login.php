@@ -1,7 +1,6 @@
-<html>
-<head>
-</head>
-<body>
+<?php
+require_once("/resources/header.php");
+?>
 
 <div id="login">
 	<form method="POST" action="index.php">
@@ -12,5 +11,6 @@
 
 </div>
 
-</body>
-</html>
+<?php
+require_once("/resources/footer.php");
+?>
